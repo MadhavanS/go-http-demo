@@ -1,0 +1,14 @@
+@baseUrl = http://localhost:8081
+###
+
+GET {{baseUrl}}/about
+
+###
+
+POST {{baseUrl}}/greet
+
+{
+    "name": "Madhavan"
+}
+
+###
