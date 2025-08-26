@@ -1,4 +1,4 @@
-module github.com/MadhavanS/go-http-demo
+module go-http-demo
 
 go 1.24.2
 

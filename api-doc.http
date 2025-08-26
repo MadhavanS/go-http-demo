@@ -4,11 +4,47 @@
 GET {{baseUrl}}/about
 
 ###
+GET {{baseUrl}}/wish?name=Stark
+
+###
 
 POST {{baseUrl}}/greet
 
 {
     "name": "Madhavan"
 }
+
+###
+POST {{baseUrl}}/add
+
+{
+    "a": 12,
+    "b": 34
+}
+
+###
+POST {{baseUrl}}/user/1
+Content-Type: application/json
+
+{
+    "name": "Andrew"
+}
+
+###
+
+GET {{baseUrl}}/user/25
+
+###
+
+PUT {{baseUrl}}/user/1
+Content-Type: application/json
+
+{
+    "name": "Anne"
+}
+
+###
+
+DELETE {{baseUrl}}/user/25
 
 ###
