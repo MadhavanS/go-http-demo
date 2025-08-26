@@ -22,24 +22,24 @@ POST {{baseUrl}}/add
 }
 
 ###
-POST {{baseUrl}}/user/4
+POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "name": "Nasaer"
+    "name": "Pagini"
 }
 
 ###
 GET {{baseUrl}}/users
 
 ###
-GET {{baseUrl}}/users?name=sa
+GET {{baseUrl}}/users?name=ga
 
 ###
-GET {{baseUrl}}/user/25
+GET {{baseUrl}}/users/3
 
 ###
-PUT {{baseUrl}}/user/1
+PUT {{baseUrl}}/users/1
 Content-Type: application/json
 
 {

@@ -14,7 +14,7 @@ func TestHelloHandler(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/hello", nil)
 	rec := httptest.NewRecorder()
 
-	helloHandler(rec, req)
+	handlers.HelloHandler(rec, req)
 
 	res := rec.Result()
 	defer res.Body.Close()
