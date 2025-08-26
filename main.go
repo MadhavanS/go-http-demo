@@ -12,7 +12,15 @@ func main() {
 	http.HandleFunc("/wish", methodHandler(http.MethodGet, handlers.WishHandler))
 	http.HandleFunc("/greet", methodHandler(http.MethodPost, handlers.GreetHandler))
 	http.HandleFunc("/add", methodHandler(http.MethodPost, handlers.AddHandler))
-	http.HandleFunc("/user/", handlers.UserHandler)
+
+	http.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodPost {
+			handlers.CreateUserHandler(w, r)
+		} else {
+			handlers.ListUsersHandler(w, r)
+		}
+	})
+	http.HandleFunc("/users/", handlers.UserByIDHandler)
 
 	// TODO: start server on :8081
 	fmt.Println("Server running on http://localhost:8081")

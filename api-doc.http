@@ -1,13 +1,12 @@
 @baseUrl = http://localhost:8081
-###
 
+###
 GET {{baseUrl}}/about
 
 ###
 GET {{baseUrl}}/wish?name=Stark
 
 ###
-
 POST {{baseUrl}}/greet
 
 {
@@ -23,19 +22,23 @@ POST {{baseUrl}}/add
 }
 
 ###
-POST {{baseUrl}}/user/1
+POST {{baseUrl}}/user/4
 Content-Type: application/json
 
 {
-    "name": "Andrew"
+    "name": "Nasaer"
 }
 
 ###
+GET {{baseUrl}}/users
 
+###
+GET {{baseUrl}}/users?name=sa
+
+###
 GET {{baseUrl}}/user/25
 
 ###
-
 PUT {{baseUrl}}/user/1
 Content-Type: application/json
 
@@ -44,7 +47,6 @@ Content-Type: application/json
 }
 
 ###
-
 DELETE {{baseUrl}}/user/25
 
 ###
