@@ -3,37 +3,27 @@ package main
 import (
 	"fmt"
 	"go-http-demo/handlers"
+	"go-http-demo/middleware"
 	"net/http"
 )
 
 func main() {
-	http.HandleFunc("/hello", methodHandler(http.MethodGet, handlers.HelloHandler))
-	http.HandleFunc("/about", methodHandler(http.MethodGet, handlers.AboutHandler))
-	http.HandleFunc("/wish", methodHandler(http.MethodGet, handlers.WishHandler))
-	http.HandleFunc("/greet", methodHandler(http.MethodPost, handlers.GreetHandler))
-	http.HandleFunc("/add", methodHandler(http.MethodPost, handlers.AddHandler))
+	mux := http.NewServeMux()
 
-	http.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
 			handlers.CreateUserHandler(w, r)
-		} else {
+			return
+		} else if r.Method == http.MethodGet {
 			handlers.ListUsersHandler(w, r)
+			return
 		}
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	})
-	http.HandleFunc("/users/", handlers.UserByIDHandler)
+
+	loggedMux := middleware.LoggingMiddleware(mux)
 
 	// TODO: start server on :8081
 	fmt.Println("Server running on http://localhost:8081")
-	http.ListenAndServe(":8081", nil)
-}
-
-func methodHandler(method string, handler http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != method {
-			w.WriteHeader(http.StatusMethodNotAllowed)
-			fmt.Fprintf(w, "Method %s is not allowed", r.Method)
-			return
-		}
-		handler(w, r)
-	}
+	http.ListenAndServe(":8081", loggedMux)
 }

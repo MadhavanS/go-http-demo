@@ -1,32 +1,11 @@
 @baseUrl = http://localhost:8081
 
 ###
-GET {{baseUrl}}/about
-
-###
-GET {{baseUrl}}/wish?name=Stark
-
-###
-POST {{baseUrl}}/greet
-
-{
-    "name": "Madhavan"
-}
-
-###
-POST {{baseUrl}}/add
-
-{
-    "a": 12,
-    "b": 34
-}
-
-###
 POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "name": "Pagini"
+    "name": "Cobb"
 }
 
 ###
